@@ -1,4 +1,4 @@
-                                    Stateful DataLoader for Mid-Epoch Training Resumption
+Stateful DataLoader for Mid-Epoch Training Resumption
 
 When training large machine learning models, it is common for training runs to be interrupted due to system crashes, time limits on shared compute clusters, or manual termination. In most modern training pipelines, model parameters, optimizer state, and learning rate scheduler state are saved in checkpoints, allowing training to resume without losing progress. However, a less obvious but equally important component is the data loading process. PyTorch’s default DataLoader does not save its iteration state, meaning that when training resumes, data loading restarts from the beginning of the epoch. This behavior can lead to duplicated samples, skipped samples, and non-reproducible training behavior, especially when data shuffling is enabled. The goal of this work is to design and implement a stateful DataLoader that can resume training from the exact point where it left off, even if the interruption occurs mid-epoch or mid-batch.
 
